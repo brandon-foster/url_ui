@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build -t base_node_babel_dotenv_react_server:v0 .
+docker build -t url_ui:v0 .
 
