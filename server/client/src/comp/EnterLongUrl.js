@@ -5,11 +5,11 @@ export const EnterLongUrl = () => {
     const PLACEHOLDER = 'e.g., https://duckduckgo.com';
     const [originalUrl, setOriginalUrl] = useState('');
     function onSubmit(e) {
-        function lastPath(str) {
-            return `/${str.split('/').reverse()[0]}`;
+        function readPath(str) {
+            return new URL(str).pathname;
         }
         e.preventDefault();
-        const url = lastPath(e.target.action);
+        const url = readPath(e.target.action);
         axios.post(url, {
             originalUrl: originalUrl,
         })
@@ -18,7 +18,7 @@ export const EnterLongUrl = () => {
     }
     return (
         <>
-        <form action='/api' method='POST' onSubmit={e => onSubmit(e)}>
+        <form action='/api/shorturl' method='POST' onSubmit={e => onSubmit(e)}>
             <input
                 className='form-control'
                 type='text'
