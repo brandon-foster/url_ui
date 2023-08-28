@@ -5,6 +5,7 @@ COPY server/client/package-lock.json package-lock.json
 RUN npm ci
 COPY server/client/public public
 COPY server/client/src src
+COPY server/client/.env .env
 RUN npm run build
 
 FROM node:16 as app
