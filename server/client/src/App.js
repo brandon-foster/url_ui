@@ -1,4 +1,5 @@
 import { EnterLongUrl } from './comp/EnterLongUrl';
+import { UrlList } from './comp/UrlList';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       </div>
       <div className='row'>
         <EnterLongUrl></EnterLongUrl>
+        <UrlList></UrlList>
       </div>
     </div>
   );

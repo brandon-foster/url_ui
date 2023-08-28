@@ -13,7 +13,10 @@ export const EnterLongUrl = () => {
         axios.post(url, {
             originalUrl: originalUrl,
         })
-            .then(response => console.info(response))
+            .then(response => {
+                console.info('created:');
+                console.info(response);
+            })
             .catch(error => console.error(error));
     }
     return (
