@@ -1,17 +1,19 @@
-import { EnterLongUrl } from './comp/EnterLongUrl';
-import { UrlList } from './comp/UrlList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { HomePage } from './page/HomePage';
+import { Layout } from './page/Layout';
+import { HashRedirectorPage } from './page/HashRedirectorPage';
 
 function App() {
   return (
-    <div className='container'>
-      <div className='row'>
-        <h1>Url Service</h1>
-      </div>
-      <div className='row'>
-        <EnterLongUrl></EnterLongUrl>
-        <UrlList></UrlList>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' exact element={<Layout/>}>
+          <Route index exact element={<HomePage/>}></Route>
+          <Route path='/l/:hashKey' exact element={<HashRedirectorPage/>}></Route>
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
