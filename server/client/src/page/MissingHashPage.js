@@ -4,7 +4,7 @@ export const MissingHashPage = () => {
     const { hashKey } = useParams();
     return (
         <>
-        <h2>Missing Hash</h2>
+        <h2>Missing Url</h2>
         <p><strong>{hashKey}</strong> appears to not exist.</p>
         </>
     );
