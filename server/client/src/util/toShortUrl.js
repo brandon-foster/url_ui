@@ -1,3 +1,4 @@
 export function toShortUrl(hash) {
-    return `${window.location.href}l/${hash}`;
+    const url = new URL(window.location.href);
+    return `${url.origin}${process.env.REACT_APP_API_URL}/${hash}`;
 };

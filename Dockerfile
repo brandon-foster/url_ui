@@ -6,6 +6,7 @@ RUN npm ci
 COPY server/client/public public
 COPY server/client/src src
 COPY server/client/.env .env
+COPY server/client/.env.production .env.production
 RUN npm run build
 
 FROM node:16 as app
