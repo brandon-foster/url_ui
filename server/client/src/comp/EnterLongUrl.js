@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-export const EnterLongUrl = () => {
+import { toShortUrl } from '../util/toShortUrl';
+
+export const EnterLongUrl = ({ setShortUrl }) => {
     const clipboardManager = (function createClipboardManager() {
         async function setText(str) {
             try {
@@ -31,10 +33,9 @@ export const EnterLongUrl = () => {
                 console.info('created:');
                 console.info(response);
                 console.info('invoking clipboardManager.setText()');
-                function toShortUrl(hash) {
-                    return `${window.location.href}l/${hash}`;
-                }
-                clipboardManager.setText(toShortUrl(response.data.hash));
+                const shortUrl = toShortUrl(response.data.hash);
+                clipboardManager.setText(shortUrl);
+                setShortUrl(shortUrl);
             })
             .catch(error => console.error(error));
     }

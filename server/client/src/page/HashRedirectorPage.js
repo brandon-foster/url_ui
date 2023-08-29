@@ -11,7 +11,7 @@ export const HashRedirectorPage = () => {
             try {
                 const response = await axios.get(`/api/shorturl/${hashKey}`);
                 console.info(response.data);
-                window.location.href = response.data.originalUrl;
+                // window.location.href = response.data.originalUrl;
             }
             catch (error) {
                 console.error(error);
@@ -22,7 +22,10 @@ export const HashRedirectorPage = () => {
     }, []);
     return (
         <>
-        {isError && <p>An error occurred.</p>}
+            {isError && <p>An error occurred.</p>}
+            <div className='spinner-grow text-center' role='status'>
+                <span className='visually-hidden'>Loading...</span>
+            </div>
         </>
     );
 };

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+import { toShortUrl } from '../util/toShortUrl';
+
 export const UrlList = () => {
     console.info(`API_URL: ${process.env.REACT_APP_API_URL}`);
     const API_URL = process.env.REACT_APP_API_URL;
@@ -31,7 +33,7 @@ export const UrlList = () => {
             {!isLoading &&
             <ul>
                 {urlList.map((shorturl, index) => {
-                    return <li key={index}><a href={shorturl.originalUrl} target='_blank' rel='noreferrer'>{shorturl.hash}</a></li>
+                    return <li key={index}><a href={toShortUrl(shorturl.hash)} target='_blank' rel='noreferrer'>{shorturl.hash}</a></li>
                 })}
             </ul>}
         </>
