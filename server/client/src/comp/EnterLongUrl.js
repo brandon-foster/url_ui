@@ -2,21 +2,9 @@ import axios from 'axios';
 import { useState } from 'react';
 
 import { toShortUrl } from '../util/toShortUrl';
+import clipboardManager from '../util/clipboardManager';
 
-export const EnterLongUrl = ({ setShortUrl }) => {
-    const clipboardManager = (function createClipboardManager() {
-        async function setText(str) {
-            try {
-                await navigator.clipboard.writeText(str);
-            }
-            catch (error) {
-                console.error(error);
-            }
-        }
-        return {
-            setText: setText,
-        };
-    }());
+export const EnterLongUrl = ({ setShortUrl, setIsShortUrlCopied }) => {
     const API_URL = process.env.REACT_APP_API_URL;
     const PLACEHOLDER = 'e.g., https://duckduckgo.com';
     const [originalUrl, setOriginalUrl] = useState('');
