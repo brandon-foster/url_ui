@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { toShortUrl } from '../util/toShortUrl';
 import clipboardManager from '../util/clipboardManager';
+import { hasScheme } from '../util/hasScheme';
 
 export const EnterLongUrl = ({ setShortUrl, setIsShortUrlCopied }) => {
     const API_URL = process.env.REACT_APP_API_URL;
@@ -34,7 +35,13 @@ export const EnterLongUrl = ({ setShortUrl, setIsShortUrlCopied }) => {
                 className='form-control'
                 type='text'
                 placeholder={PLACEHOLDER}
-                onChange={e => setOriginalUrl(e.target.value)}
+                onChange={e => {
+                    let inputUrl = e.target.value;
+                    if (!hasScheme(inputUrl)) {
+                        inputUrl = `http://${inputUrl}`;
+                    }
+                    setOriginalUrl(inputUrl);
+                }}
                 autoFocus></input>
             <button className='btn btn-primary form-control' type='submit'>GO</button>
         </form>
